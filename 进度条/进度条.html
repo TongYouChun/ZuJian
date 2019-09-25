@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0;}
+        #box{width:600px;height:300px;border:1px solid #000;margin:40px auto; position: relative;}
+        p{position:absolute;top:130px;left: 0; height:40px;background:#5f0; font:16px/40px"";   text-align: center;}
+       .unm{display:none;margin:0 auto; width:200px;height:100px;border:1px solid #000; border-radius:10px;overflow: hidden;}
+       .unm h3{text-align: center; font:20px/100px"";color:#284;}
+        .unm>span{float:right;margin:10px;} 
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p><span></span></p>
+    </div>
+    <div class="unm"><span>*</span><h3>人鬼才大</h3></div>
+</body>
+    <script>
+        var abox=document.getElementById("box");
+        var ap=document.querySelector("p");
+        var aspan=document.querySelector("span")
+        var unm=document.querySelector(".unm");
+        
+        var sun;
+        var uxu=600;
+        var cyc=13;
+       sun=setInterval(function(){
+           if(uxu-ap.offsetWidth<cyc){
+               clearInterval(sun);
+            ap.style.width="600px";
+            aspan.innerText="100%";
+           unm.style.display="block";
+            clearInterval(sun);
+           }else{
+               ap.style.width=ap.offsetWidth+cyc+"px";
+               aspan.innerText=parseInt(ap.offsetWidth/uxu*100);
+           }
+          
+        },100)
+        
+    </script>
+</html>

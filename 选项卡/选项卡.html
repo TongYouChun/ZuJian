@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding:0;list-style:none}
+        .box{width:400px;height:300px;border: solid 1px black;margin:50px auto;}
+        .box ul{height:40px;line-height:40px;text-align: center;display: flex;background: #ccc;border-bottom: solid 1px black;}
+        .box ul li{flex:1;border-left:solid 1px black;border-right: solid 1px black}
+        .box ul li.active{background: red}
+
+        .cont{height:259px;}
+        .cont .msg{height: 259px;display: none}
+        .cont .msg:nth-child(1){background: #288;display:block;}
+        .cont .msg:nth-child(2){background: #828;}
+        .cont .msg:nth-child(3){background: #882;}
+        .cont .msg:nth-child(4){background: #822;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li class="active">1</li><li>2</li><li>3</li><li>4</li>
+        </ul>
+        <div class="cont">
+            <p class="msg">1111</p>
+            <p class="msg">2222</p>
+            <p class="msg">333333</p>
+            <p class="msg">44444</p>
+        </div>
+    </div>
+</body>
+<script>
+    // OOA:选项卡：点击标题按钮，切换内容
+        // 1.选元素
+        // 2.绑事件
+        // 3.计算要显示的元素的索引：
+        //                     // 1.点击的时候得有序号
+        //                     // 2.计算序号
+        //                     // 3.根据序号决定谁显示
+        // 4.隐藏所有
+        // 5.显示计算之后的索引所代表的元素
+
+    // OOD:先符合面向对象的语法格式，每个功能之间的关系
+        // 属性写在构造函数内
+        // 方法写在构造函数的原型上
+        // function Tab(){
+        //     // 1.选元素
+
+        //     // 2.绑事件
+        //     this.init()
+        // }
+        // Tab.prototype.init = function(){
+        //     // 写事件的绑定
+        //         // ...
+        //         // 3.计算要显示的元素的索引
+        //         this.changeIndex()
+        // }
+        // Tab.prototype.changeIndex = function(){
+        //     // 计算呗。。。
+        //     // 4.隐藏所有
+        //     this.hide()
+        // }
+        // Tab.prototype.hide = function(){
+        //     // 隐藏所有的代码...
+        //     // 5.显示计算之后的索引所代表的元素
+        //     this.show()
+        // }
+        // Tab.prototype.show = function(){
+        //     // 显示当前的代码。。
+        // }
+
+        // new Tab();
+
+    // OOP:
+        function Tab(){
+            // 1.选元素
+            this.li = document.querySelectorAll(".box li")
+            this.p = document.querySelectorAll(".box p")
+
+            // 初始自己定义的索引
+            this.index = 0;
+
+            // 2.绑事件
+            this.init()
+        }
+        Tab.prototype.init = function(){
+            var that = this;
+            // 写事件的绑定
+                for(var i=0;i<this.li.length;i++){
+                    this.li[i].xuhao = i;
+                    this.li[i].onclick = function(){
+                        // 3.计算要显示的元素的索引
+                        that.changeIndex(this)
+                    }
+                }
+        }
+        Tab.prototype.changeIndex = function(ele){
+            // 计算呗。。。
+            this.index = ele.xuhao;
+            // 4.隐藏所有
+            this.hide()
+        }
+        Tab.prototype.hide = function(){
+            // 隐藏所有的代码...
+            for(var i=0;i<this.li.length;i++){
+                this.li[i].className = "";
+                this.p[i].style.display = "none";
+            }
+            // 5.显示计算之后的索引所代表的元素
+            this.show()
+        }
+        Tab.prototype.show = function(){
+            // 显示当前的代码。。
+            this.li[this.index].className = "active";
+            this.p[this.index].style.display = "block";
+        }
+
+
+        // 执行
+        new Tab();
+</script>
+</html>

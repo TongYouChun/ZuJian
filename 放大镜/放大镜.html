@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .l-box{width:400px;height:300px;position:absolute;left: 20px;top: 60px;}
+    .l-box img{display:block; width:400px;height:300px;}
+     .l-box span{display: none; position:absolute;left: 0; top: 0; width:80px;height: 60px; background-color:rgba(255,255 ,255,0.5);}   
+     .r-box{position:absolute;left:440px; top:60px; overflow: hidden;display:none;width:400px;height:300px;}
+    
+     .r-box img{height:1500px; width: 2000px;position: absolute;}
+    </style>
+</head>
+<body>
+    <div class="l-box"><a href="#"><img src="images/1.jpg" alt=""></a><span></span></div>
+    <div class="r-box"><img src="images/1.jpg" alt=""></div>
+</body>
+    <script>
+        function Fang (){
+           this.Lbox=document.querySelector(".l-box");
+           this.Rbox=document.querySelector(".r-box");
+           this.span=document.querySelector("span") ;
+           this.Rimg=document.querySelector(".r-box img");
+           this.Bang();
+        }
+        Fang.prototype.Bang = function () {
+            var th=this;
+            this.Lbox.onmouseover = function () {
+                th.ovr();
+                this.onmousemove = function (eve){
+                    var e = eve || window.event ;
+                    th.move({
+                       x:e.pageX - this.offsetLeft,
+                       y:e.pageY -this.offsetTop
+                    });
+                }
+            }
+            this.Lbox.onmouseout = function () {
+                th.out();
+            }
+        }
+        //鼠标放上去
+        Fang.prototype.ovr = function (){
+            this.span.style.display= "block";
+            this.Rbox.style.display = "block" ;
+        }
+        //鼠标移动
+        Fang.prototype.move = function (tye){
+           var l=tye.x-this.span.offsetWidth/2; 
+           var t=tye.y-this.span.offsetHeight/2;
+           (l <=0) && (l=0);
+           (t <=0) && (t=0);
+           (l >= this.Lbox.offsetWidth - this.span.offsetWidth) &&(l=this.Lbox.offsetWidth - this.span.offsetWidth);
+           (t >=this.Lbox.offsetHeight - this.span.offsetHeight) &&(t=this.Lbox.offsetHeight - this.span.offsetHeight);
+            this.span.style.left =l+ "px";
+            this.span.style.top =t+ "px"
+            //比例
+           var L = l/(this.Lbox.offsetWidth - this.span.offsetWidth) ;
+           var T = t/(this.Lbox.offsetHeight - this.span.offsetHeight) ;
+
+            this.Rimg.style.left = L*(this.Rbox.offsetWidth-this.Rimg.offsetWidth) +"px";
+            this.Rimg.style.top = T*(this.Rbox.offsetHeight-this.Rimg.offsetHeight) + "px";
+            console.log()
+        }
+        
+        //鼠标离开
+        Fang.prototype.out = function (){
+            this.span.style.display= "none" 
+            this.Rbox.style.display="none"
+        }
+        new Fang;
+    </script>
+</html>

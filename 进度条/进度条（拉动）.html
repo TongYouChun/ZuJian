@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 0;}
+        .box{margin:20px auto;padding:40px 0;background:#aaa;width:600px;}
+        .box .jing{font:20px/2"";height: 40px; display:flex;}
+        .box .jing b{ width:90px;text-align:center; }
+        .box .jing span{width:30px;text-align:center;}
+        .box .jing h3 {width:440px;height: 40px;border:1px solid #000; border-radius:20px ;position:relative;}
+        .box .jing p{width:0px;height: 40px;background: #f00; border-radius: 20px;}
+        .box .jing p em{width:40px;height: 60px;background:cyan;border-radius:6px; position: absolute; top:-9px;left: 0px;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="jing"><b>0</b><span>0</span><h3><p><em></em></p></h3><span>100</span></div>
+    </div>
+</body>
+    <script>
+        var oh3=document.querySelector("h3");
+        var op=document.querySelector("p");
+        var oem=document.querySelector("em");
+        var ob=document.querySelector("b");
+        oem.onmousedown= function (eve) {
+            var e1=eve || window.event;
+            document.onmousemove= function (eve) {
+            var e2=eve|| window.event;
+            var g=e2.clientX-oh3.offsetLeft-e1.offsetX;
+            (g<0)&&(g=0);
+            (g>oh3.offsetWidth-oem.offsetWidth)&&(g=oh3.offsetWidth-oem.offsetWidth);
+            oem.style.left=g + "px" ;
+            op.style.width=g +oem.offsetWidth/2+ "px" ;
+            
+            ob.innerText =parseInt(g/(oh3.offsetWidth-oem.offsetWidth)*100)+ "%"
+            return false;
+            }
+            document.onmouseup = function () {
+                document.onmousemove="";
+                document.onmouseup ="";
+            }
+        }
+    </script>
+</html>

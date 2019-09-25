@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{margin: 0;padding: 0;}
+    body{height: 1000px;}
+        .box{ position: fixed;width:300px;height: 100px;background:#999; left: 0;right: 0; top:-100px; margin: auto; }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+    <script src="js/move.js"></script>
+    <script>
+        function Hu(){
+            this.box = document.querySelector(".box");
+            this.Di();
+        }
+        Hu.prototype.Di = function (){
+            var th=this;
+            window.onscroll = function (){
+                th.cv();
+            }
+        }
+        Hu.prototype.cv = function (){
+            if(document.documentElement.scrollTop>200){
+                
+                move(this.box,{top:0})
+            }else{
+               move(this.box,{top:-100})
+            }
+        }
+        new Hu();
+    </script>
+</html>
