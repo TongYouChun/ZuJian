@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{width:1130px;height:300px;position: relative;margin: 20px auto}
+        .imgbox img{width:1130px;height:300px;}
+
+        .imgbox a{position: absolute;left:1130px;top:0}
+        .imgbox a:nth-child(1){left:0}
+
+        
+        .btn *{border: none;background: rgba(255,255,255,0.6);width:50px;height:50px;position: absolute;top:125px;outline: none;cursor: pointer}
+        #left{left:0}
+        #right{right:0}
+    </style>
+</head>
+<body>
+    <div class="banner1 box">
+        <div class="imgbox">
+            <a><img src="https://img.zcool.cn/community/018bec5c3d3e40a80121fbb01354a4.jpg@1380w" alt=""></a>
+            <a><img src="https://img.zcool.cn/community/01e9555c3d3e8ba8012090dbe7f2a9.jpg@1380w" alt=""></a>
+            <a><img src="https://img.zcool.cn/community/0124ea5c3d7be7a80121fbb05896c3.png@1380w" alt=""></a>
+            <a><img src="https://img.zcool.cn/community/01c5bb5c3d7c5ba8012090db91bcaa.png@1380w" alt=""></a>
+        </div>
+        <div class="btn">
+            <input type="button" id="left" value="<<<">
+            <input type="button" id="right" value=">>>">
+        </div>
+    </div>
+</body>
+    <script src="js/jquery.js"></script>
+    <script src="jquery.about.js"></script>
+    <script>
+        $(".banner1").banner({
+            items:$(".banner1").children(".imgbox").children("a"),
+            left:$(".banner1").find("#left"),
+            right:$(".banner1").find("#right")
+        })
+    </script>
+</html>
