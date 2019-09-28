@@ -1,0 +1,118 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-27 11:00:22
+ * @LastEditTime: 2019-09-27 21:36:56
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box{
+      cursor: pointer;
+    }
+    .ul{
+      display:none;
+    }
+    .ul>li{
+      cursor: pointer;
+    }
+    .ul ul{
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">一级菜单</div>
+  <ul class="ul">
+    <li>
+      <span>二级菜单</span>
+      <ul>
+        <li>三级菜单</li>
+        <li>三级菜单</li>
+        <li>三级菜单</li>
+        <li>三级菜单</li>
+      </ul>
+    </li>
+    <li>
+        <span>二级菜单</span>
+        <ul>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+        </ul>
+    </li>
+    <li>
+        <span>二级菜单</span>
+        <ul>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+        </ul>
+    </li>
+    <li>
+        <span>二级菜单</span>
+        <ul>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+        </ul>
+    </li>
+    <li>
+        <span>二级菜单</span>
+        <ul>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+          <li>三级菜单</li>
+        </ul>
+    </li>
+  </ul>
+</body>
+<script>
+  function CaiDan () {
+    this.box = document.querySelector("#box");
+    this.xul = document.querySelector(".ul");
+    this.xli = document.querySelectorAll(".ul>li");
+    // this.aul = document.querySelectorAll(".ul ul");
+    this.bu = true;
+    this.Shi();
+  }
+  CaiDan.prototype.Shi = function () {
+    var thin = this;
+    for(var i=0; i<this.xli.length; i++){
+     this.xli[i].onclick = function () {
+      var n = i;
+         return function (){
+          
+         }
+      }()
+    }
+    this.box.onclick = function () {
+      thin.we();
+    }
+    
+  }
+  // CaiDan.prototype.San = function () {
+
+  // }
+  CaiDan.prototype.we = function () {
+    if(this.bu == true ) {
+      this.xul.style.display="block";
+      this.bu = false;
+    } else {
+      this.xul.style.display="none";
+      this.bu = true;
+    }
+  }
+  new CaiDan;
+</script>
+</html>

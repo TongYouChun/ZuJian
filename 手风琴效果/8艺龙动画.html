@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul li {
+            list-style: none;
+        }
+        #main {
+            display: flex;
+            width: 100%;
+            height: 260px;
+            margin: 40px 0;
+            justify-content: center
+        }
+        .top {
+            width: 100%;
+        }
+        #main ul li {
+            width: 200px;
+            height: 260px;
+            float: left;
+            position: relative;
+        }
+        #main ul li div {
+            width: 100%;
+            height: 260px;
+        }
+        #main ul li div.des {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(0,0,0,.3);
+            
+            }
+            #main ul li div.des h4 {
+                color: #FFF;
+                font-size: 30px;
+                padding: 30px;
+                width: 30px;
+                margin: 0 auto;
+                
+            }
+    </style>
+
+</head>
+<body>
+<div id="main">
+    <ul>
+        <li>
+            <div class="des"><h4>园林酒店</h4></div>
+            <div style="background: url(img/1.jpg) center;"></div>
+        </li>
+        <li>
+            <div class="des"><h4>设计师酒店</h4></div>
+            <div style="background: url(img/2.jpg) center;"></div>
+        </li>
+        <li>
+            <div class="des"><h4>青年旅社</h4></div>
+            <div style="background: url(img/3.jpg) center;"></div>
+        </li>
+        <li>
+            <div class="des"><h4>特色客栈</h4></div>
+            <div style="background: url(img/4.jpg) center;"></div>
+        </li>
+        <li>
+            <div class="des"><h4>海岛酒店</h4></div>
+            <div style="background: url(img/5.jpg) center;"></div>
+        </li>
+        <li>
+            <div class="des"><h4>海外温泉</h4></div>
+            <div style="background: url(img/6.jpg) center;"></div>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="../jquery.js"></script>
+<script>
+    $("#main").find("li").mouseover(function(){
+        
+        // $("#main").find("li")           //获取所有li
+        // .stop().animate({width:160})    //所有li的宽度变成160
+        // .eq($(this).index())            //找到当前li
+        // .stop().animate({width:400})    //当前li宽度变成400
+        // .children(".des").stop().hide() //找到当前li的子元素.des隐藏
+        
+        // $("#main").find("li")           //获取所有li
+        // .stop().animate({width:160})    //所有li的宽度变成160
+        // .children(".des").stop().show() //找到所有li的子元素.des显示
+        // .parent()      //因为上一个选择器操作到了li内的des，所以需要先回到li
+        // .eq($(this).index())            //找到当前li
+        // .stop().animate({width:400})    //当前li宽度变成400
+        // .children(".des").stop().hide() //找到当前li的子元素.des隐藏
+
+        $(this).stop()                      //获取当前li
+        .animate({width:400})               //将当前li的宽度设成400
+        .children(".des").stop().hide()     //将当前li的.des隐藏
+        .parent().siblings()                //.des的父级的兄弟，除了当前li的所有li
+        .stop().animate({width:160})        //除了当前li的所有li宽度变成160
+        .children(".des").stop().show()     //除了当前li的所有li的.des显示
+    })
+
+
+
+    $("#main").find("li").mouseout(function(){
+
+        $("#main").find("li")           //获取所有li
+        .stop().animate({width:200})    //所有li的宽度变成200
+        .children(".des").stop().show() //找到所有li的子元素.des显示
+
+    })
+</script>
+</html>
